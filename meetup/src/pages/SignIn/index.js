@@ -1,7 +1,20 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
-// import { Container } from './styles';
+import logo from '~/assets/logo.svg';
 
 export default function SignIn() {
-  return <h1>Hello</h1>;
+  return (
+    <>
+      <img src={logo} alt="Meetapp" />
+
+      <form>
+        <input type="email" placeholder="Enter your e-mail" />
+        <input type="password" placeholder="Enter your password" />
+
+        <button type="submit">Sign In</button>
+        <Link to="/register">Create new account</Link>
+      </form>
+    </>
+  );
 }
