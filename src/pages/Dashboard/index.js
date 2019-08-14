@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
 import pt from 'date-fns/locale/pt';
 import { format, parseISO } from 'date-fns';
 import { MdChevronRight } from 'react-icons/md';
 
 import api from '~/services/api';
+import history from '~/services/history';
 
 import { Container, Meetup, MeetupList } from './styles';
 
@@ -33,13 +33,17 @@ export default function Dashboard() {
     loadMeetups();
   }, []);
 
+  function handleClick() {
+    history.push('/create');
+  }
+
   return (
     <Container>
       <header>
         <strong>Meus meetups</strong>
-        <Link to="meetup/create">
-          <button type="button">Novo meetup</button>
-        </Link>
+        <button type="button" onClick={handleClick}>
+          Novo meetup
+        </button>
       </header>
 
       <MeetupList>

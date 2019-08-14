@@ -36,7 +36,7 @@ export default function Details({ match }) {
   }
 
   async function handleCancel() {
-    await api.delete(`meetup/${id}`);
+    await api.delete(`meetups/${id}`);
     history.push('/dashboard');
   }
 
@@ -57,7 +57,7 @@ export default function Details({ match }) {
       </header>
 
       <Meetup>
-        <img src={meetup.url} alt="meetapp" />
+        <img src={meetup.url} alt={meetup.title} />
         <p>{meetup.description}</p>
         <p>
           Caso queira participar como palestrante do meetup envie um e-mail para
