@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Form, Input } from '@rocketseat/unform';
+import * as Yup from 'yup';
 
 import { Container } from './styles';
 
@@ -24,9 +25,30 @@ export default function Profile() {
     dispatch(updateProfileRequest(data));
   }
 
+  const schema = Yup.object().shape({
+    name: Yup.string().required('Name is required'),
+    email: Yup.string()
+      .email('Invalid e-mail')
+      .required('E-mail is required'),
+    oldPassword: Yup.string().when('password', (value, field) =>
+      value ? field.required('Current password is required') : field
+    ),
+    password: Yup.string()
+      .transform(value => (!value ? null : value))
+      .nullable()
+      .min(6, 'Password must be at least 6 characters'),
+    confirmPassword: Yup.string().when('password', (value, field) =>
+      value
+        ? field
+            .required()
+            .oneOf([Yup.ref('password')], 'Password does not match')
+        : field
+    ),
+  });
+
   return (
     <Container>
-      <Form initialData={profile} onSubmit={handleSubmit}>
+      <Form initialData={profile} schema={schema} onSubmit={handleSubmit}>
         <Input name="name" placeholder="Full name" />
         <Input name="email" placeholder="Enter your e-mail" />
 
