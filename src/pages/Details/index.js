@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import pt from 'date-fns/locale/pt';
 import { format, parseISO } from 'date-fns';
 import PropTypes from 'prop-types';
+import { toast } from 'react-toastify';
 
 import api from '~/services/api';
 import history from '~/services/history';
@@ -14,18 +15,23 @@ export default function Details({ match }) {
 
   useEffect(() => {
     async function loadMeetup() {
-      const response = await api.get(`meetups/${id}/details`);
-      setMeetup({
-        ...response.data,
-        url: response.data.File.url,
-        formattedDate: format(
-          parseISO(response.data.date),
-          "d 'de' MMMM', às' HH'h' mm'min'",
-          {
-            locale: pt,
-          }
-        ),
-      });
+      try {
+        const response = await api.get(`meetups/${id}/details`);
+        setMeetup({
+          ...response.data,
+          url: response.data.File.url,
+          formattedDate: format(
+            parseISO(response.data.date),
+            "d 'de' MMMM', às' HH'h' mm'min'",
+            {
+              locale: pt,
+            }
+          ),
+        });
+      } catch (err) {
+        toast.error('Error acessing meetup details, please try again');
+        history.push('/dashboard');
+      }
     }
 
     loadMeetup();
@@ -36,8 +42,13 @@ export default function Details({ match }) {
   }
 
   async function handleCancel() {
-    await api.delete(`meetups/${id}`);
-    history.push('/dashboard');
+    try {
+      await api.delete(`meetups/${id}`);
+      toast.success('Meetup was canceled');
+      history.push('/dashboard');
+    } catch (err) {
+      toast.error('Error cancelling meetup, please try again');
+    }
   }
 
   return (
