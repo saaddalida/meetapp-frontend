@@ -21,7 +21,7 @@ export default function BannerInput() {
         path: 'dataset.file',
       });
     }
-  }, [ref, registerField]);
+  }, [ref]);//eslint-disable-line
 
   async function handleChange(e) {
     const data = new FormData();
@@ -45,15 +45,7 @@ export default function BannerInput() {
           </div>
         )}
 
-        {preview && (
-          <img
-            src={
-              preview ||
-              'https://api.adorable.io/avatars/285/abott@adorable.pngCopy'
-            }
-            alt="file"
-          />
-        )}
+        {preview && <img src={preview} alt="file" />}
 
         <input
           type="file"

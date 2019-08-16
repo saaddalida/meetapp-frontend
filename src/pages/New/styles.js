@@ -12,11 +12,12 @@ export const Container = styled.div`
 
     input,
     textarea {
+      font-family: 'Roboto';
       background: #261f2d;
       width: 100%;
       border: 0;
       border-radius: 4px;
-      height: 48px;
+      height: 30px;
       padding: 0 15px;
       color: #fff;
       margin: 0 0 10px;
@@ -31,19 +32,12 @@ export const Container = styled.div`
       height: 200px;
       padding: 15px;
     }
-    span {
-      display: block;
-      color: #e65175;
-      margin: -5px 0 10px;
-      font-weight: bold;
-      text-align: left;
-    }
+
     > button {
       margin: 10px 0 0;
       align-self: center;
       background: ${darken(0.05, '#4dbaf9')};
       font-weight: bold;
-      letter-spacing: 0.5px;
       color: #fff;
       border: 0;
       border-radius: 4px;

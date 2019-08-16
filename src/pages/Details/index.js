@@ -29,7 +29,7 @@ export default function Details({ match }) {
           ),
         });
       } catch (err) {
-        toast.error('Error acessing meetup details, please try again');
+        toast.error('Erro ao acessar os detalhes do meetup');
         history.push('/dashboard');
       }
     }
@@ -44,7 +44,7 @@ export default function Details({ match }) {
   async function handleCancel() {
     try {
       await api.delete(`meetups/${id}`);
-      toast.success('Meetup was canceled');
+      toast.success('Meetup foi cancelado com sucesso');
       history.push('/dashboard');
     } catch (err) {
       toast.error('Error cancelling meetup, please try again');
