@@ -14,7 +14,6 @@ export const Container = styled.div`
     img {
       width: 300px;
       height: 150px;
-      border: 2px solid rgba(0, 0, 0, 0.3);
       background: #261f2d;
     }
 
