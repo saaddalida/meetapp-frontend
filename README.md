@@ -43,7 +43,7 @@ To clone and run this application, you'll need [Git](https://git-scm.com), [Node
 
 ## Authors
 
-- **Dalida Saad** - [Twitter](https://twitter.com/dalida_saad)
+- **Dalida Saad** - :wave: [Get in touch!](https://www.linkedin.com/in/dalida-saad/)
 
 ## License
 
