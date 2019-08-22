@@ -45,6 +45,15 @@ export const Container = styled.div`
   }
 `;
 
+export const Loading = styled.h1`
+  display: flex;
+  justify-content: center;
+  align-self: center;
+  font-size: 25px;
+  color: #fff;
+  margin-top: 30px;
+`;
+
 export const Meetup = styled.div`
   width: 900px;
   display: flex;

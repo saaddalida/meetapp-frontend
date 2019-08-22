@@ -7,11 +7,12 @@ import { toast } from 'react-toastify';
 import api from '~/services/api';
 import history from '~/services/history';
 
-import { Container, Meetup } from './styles';
+import { Container, Meetup, Loading } from './styles';
 
 export default function Details({ match }) {
   const { id } = match.params;
   const [meetup, setMeetup] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     async function loadMeetup() {
@@ -19,7 +20,10 @@ export default function Details({ match }) {
         const response = await api.get(`meetups/${id}/details`);
         setMeetup({
           ...response.data,
-          url: response.data.File.url,
+          file: {
+            id: response.data.file_id,
+            url: response.data.File.url,
+          },
           formattedDate: format(
             parseISO(response.data.date),
             "d 'de' MMMM', às' HH'h' mm'min'",
@@ -28,8 +32,10 @@ export default function Details({ match }) {
             }
           ),
         });
+        setLoading(false);
       } catch (err) {
         toast.error('Erro ao acessar os detalhes do meetup');
+        setLoading(false);
         history.push('/dashboard');
       }
     }
@@ -51,7 +57,9 @@ export default function Details({ match }) {
     }
   }
 
-  return (
+  return loading ? (
+    <Loading>Carregando...</Loading>
+  ) : (
     <Container>
       <header>
         <strong>{meetup.title}</strong>
@@ -68,7 +76,7 @@ export default function Details({ match }) {
       </header>
 
       <Meetup>
-        <img src={meetup.url} alt={meetup.title} />
+        <img src={meetup.file.url} alt={meetup.title} />
         <p>{meetup.description}</p>
         <p>
           Caso queira participar como palestrante do meetup envie um e-mail para
