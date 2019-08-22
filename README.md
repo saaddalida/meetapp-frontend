@@ -14,18 +14,17 @@ This application have seven screens: Authentication, SignUp, Dashboard, Details,
 
 To clone and run this application, you'll need [Git](https://git-scm.com), [Node.js v10.16][nodejs] or higher + [Yarn v1.13][yarn] or higher installed on your computer and the [MeetApp API](https://github.com/saaddalida/meetapp-backend). From your command line:
 
-```bash
-# Clone this repository
-$ git clone https://github.com/saaddalida/meetapp-frontend.git
+    # Clone this repository
+    $ git clone https://github.com/saaddalida/meetapp-frontend.git
 
-# Go into the repository
-$ cd meetapp-frontend
+    # Go into the repository
+    $ cd meetapp-frontend
 
-# Install dependencies
-$ yarn install
+    # Install dependencies
+    $ yarn install
 
-# Run the app
-$ yarn start
+    # Run the app
+    $ yarn start
 
 ## Built With
 
